@@ -27,7 +27,6 @@ func main() {
 	port, err := Port.FindFreePort(BEGIN_PORT, END_PORT, jp)
 
 	Port.Write(pathFile, name, port, jp)
-	fmt.Println(jp)
 
 	if err != nil {
 		os.Exit(1)
