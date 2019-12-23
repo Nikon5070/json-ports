@@ -1,4 +1,4 @@
-package ioevents
+package port
 
 import (
 	"encoding/json"
@@ -28,14 +28,23 @@ func ConvertFileJsonToMap(pathFile string) (map[string]interface{}, error) {
 	return jsonMap, nil
 }
 
-func Read(pathFile, key string) (int, error) {
+func convertJson(m map[string]interface{}) JsonPort {
+	jp := make(JsonPort)
+	for k, v := range m {
+		jp[k] = int(v.(float64))
+	}
+	return jp
+}
 
-	jsonMap, err := ConvertFileJsonToMap(pathFile)
+func Read(pathFile, key string, jp *JsonPort) (int, error) {
+	m, err := ConvertFileJsonToMap(pathFile)
 	if err != nil {
 		return 0, err
 	}
 
-	value := jsonMap[key]
+	*jp = convertJson(m)
+
+	value := m[key]
 	if value == nil {
 		err := errors.New("not found this key")
 		return 0, err
