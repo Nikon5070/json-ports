@@ -2,7 +2,6 @@ package port
 
 import (
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 )
 
