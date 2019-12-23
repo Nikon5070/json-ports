@@ -3,7 +3,7 @@ package main
 import (
 	"flag"
 	"fmt"
-	Port "net/dial/port"
+	Port "github.com/Nikon5070/json-ports/port"
 	"os"
 )
 
